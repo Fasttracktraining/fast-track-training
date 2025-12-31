@@ -1,0 +1,128 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("STUDENT") // "STUDENT" or "TEACHER"
+  isPro     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Student specific relations
+  quizResults   QuizResult[]
+  hazardResults HazardResult[]
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  imageUrl    String?
+  price       Float?
+  published   Boolean  @default(true)
+  quizzes     Quiz[]
+  hazardTests HazardTest[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Quiz {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  videoUrl    String?    @map("video_url")
+  published   Boolean    @default(true)
+  isPremium   Boolean    @default(false)
+  price       Float?
+  
+  courseId    String?
+  course      Course?    @relation(fields: [courseId], references: [id])
+  
+  questions   Question[]
+  results     QuizResult[]
+  createdAt   DateTime   @default(now())
+}
+
+model Question {
+  id            String   @id @default(cuid())
+  quizId        String
+  quiz          Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  text          String
+  options       String   // stored as JSON string ["Option A", "Option B"]
+  correctAnswer Int
+  correctAnswers String? // For multiple choice, e.g. "[0, 1]"
+  explanation   String?
+  imageSrc      String?
+  audioSrc      String?
+}
+
+model QuizResult {
+  id        String   @id @default(cuid())
+  score     Int
+  total     Int
+  passed    Boolean  @default(false)
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  quizId    String
+  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+}
+
+// Hazard Perception Models
+
+model HazardTest {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  videoUrl    String   // The Vimeo URL
+  published   Boolean  @default(true)
+  isPremium   Boolean  @default(false)
+  courseId    String?
+  course      Course?  @relation(fields: [courseId], references: [id])
+
+  hazards     HazardWindow[]
+  results     HazardResult[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model HazardWindow {
+  id           String     @id @default(cuid())
+  hazardTestId String
+  hazardTest   HazardTest @relation(fields: [hazardTestId], references: [id], onDelete: Cascade)
+  startTime    Float      // Start of 5-point window (seconds)
+  endTime      Float      // End of scoring window (0 points) (seconds)
+  description  String?    // e.g. "Car pulling out"
+}
+
+model HazardResult {
+  id           String     @id @default(cuid())
+  score        Int
+  totalPoints  Int
+  userId       String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hazardTestId String
+  hazardTest   HazardTest @relation(fields: [hazardTestId], references: [id], onDelete: Cascade)
+  
+  // JSON string mainly for analytics/review: e.g. [{ clickTime: 4.5, score: 5, hazardId: "..." }]
+  clickData    String?    
+
+  createdAt    DateTime   @default(now())
+}

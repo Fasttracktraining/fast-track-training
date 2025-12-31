@@ -15,7 +15,7 @@ const config: Config = {
                 "slate-850": "#1e293b", // Custom slate for contrast
             },
             fontFamily: {
-                sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui'],
+                sans: ['var(--font-plus-jakarta)', 'ui-sans-serif', 'system-ui'],
             },
         },
     },

@@ -83,21 +83,34 @@ export default async function LandingPage() {
               {/* Circle Image Wrapper */}
               <div className="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px]">
 
-                {/* Placeholder Circles - Using a gradient placeholder since the image file 'multicultural-women-uk.png' was deleted */}
+                {/* Diverse Students Image */}
                 <div className="absolute inset-0 rounded-full border-[12px] border-white shadow-2xl overflow-hidden bg-slate-200">
-                  <div className="w-full h-full bg-slate-300 flex items-center justify-center text-slate-500 font-bold">
-                    Student Image
-                  </div>
+                  <Image
+                    src="/images/students-diverse-traditional.png"
+                    alt="Diverse international students studying in the UK"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Floating Secondary Image */}
+                <div className="absolute -top-10 -left-10 w-32 h-32 md:w-48 md:h-48 rounded-2xl border-8 border-white shadow-xl overflow-hidden hidden md:block transform -rotate-12 z-10">
+                  <Image
+                    src="/images/student-south-asian-traditional.png"
+                    alt="International student in traditional attire"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
 
                 {/* Success Badge */}
-                <div className="absolute -bottom-6 -left-6 md:bottom-8 md:left-0 bg-ft-red text-white w-32 h-32 md:w-48 md:h-48 rounded-full flex flex-col items-center justify-center shadow-xl border-4 border-white transform -rotate-6 hover:rotate-0 transition-transform z-20">
+                <div className="absolute -bottom-6 -left-6 md:bottom-8 md:right-0 md:left-auto bg-ft-red text-white w-32 h-32 md:w-48 md:h-48 rounded-full flex flex-col items-center justify-center shadow-xl border-4 border-white transform rotate-6 hover:rotate-0 transition-transform z-20">
                   <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-center mt-2">Success Rate</span>
                   <span className="text-4xl md:text-6xl font-extrabold">99%</span>
                 </div>
 
                 {/* 10 Years Badge */}
-                <div className="absolute -top-4 -right-4 bg-[#D4AF37] text-white w-24 h-24 md:w-32 md:h-32 rounded-full flex flex-col items-center justify-center shadow-xl border-4 border-white z-20">
+                <div className="absolute top-10 -right-4 bg-[#D4AF37] text-white w-24 h-24 md:w-32 md:h-32 rounded-full flex flex-col items-center justify-center shadow-xl border-4 border-white z-20">
                   <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Celebrating</span>
                   <span className="text-2xl md:text-4xl font-extrabold leading-none">10</span>
                   <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-center">Years</span>
@@ -252,6 +265,64 @@ export default async function LandingPage() {
               title="Group or 1:1"
               desc="Our training can be completed in online group classes, face-to-face or 1:1 with a teacher."
             />
+          </div>
+        </div>
+      </section>
+
+      {/* ================= OUR STUDENTS SECTION ================= */}
+      <section className="py-24 bg-slate-50 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1 space-y-8 text-center lg:text-left">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-ft-blue leading-tight uppercase tracking-tight">
+                Empowering a <span className="text-ft-red">Diverse Community</span> <br /> of Learners
+              </h2>
+              <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium italic">
+                "We take pride in helping students from all backgrounds achieve their goals in the UK. Whether you're here for family, work, or building a new life, our traditional and modern teaching methods are tailored for you."
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+                <div className="bg-white p-5 rounded-2xl shadow-md border border-slate-100 flex items-center gap-4 hover:shadow-lg transition-shadow">
+                  <div className="w-12 h-12 bg-ft-red rounded-full flex items-center justify-center text-white font-bold text-xl shadow-inner">150+</div>
+                  <div>
+                    <div className="font-bold text-ft-blue text-lg">Nationalities</div>
+                    <div className="text-slate-500 text-xs">Studying with us</div>
+                  </div>
+                </div>
+                <div className="bg-white p-5 rounded-2xl shadow-md border border-slate-100 flex items-center gap-4 hover:shadow-lg transition-shadow">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-inner">10k+</div>
+                  <div>
+                    <div className="font-bold text-ft-blue text-lg">Success Stories</div>
+                    <div className="text-slate-500 text-xs">Since 2013</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-1 relative">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white aspect-[4/3] transform hover:scale-[1.02] transition-transform duration-500 z-10">
+                <Image
+                  src="/images/students-international-campus.png"
+                  alt="Inclusive student community in the UK"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Floating Element over image */}
+              <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-2xl shadow-2xl z-20 hidden md:block max-w-[240px] border border-slate-100 transform -rotate-2">
+                <div className="flex items-center gap-2 mb-2 text-yellow-400">
+                  <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
+                </div>
+                <p className="text-slate-800 font-bold text-sm leading-tight italic">
+                  "The most inclusive and supportive place to prepare for my citizenship!"
+                </p>
+                <p className="text-xs text-slate-500 mt-2 font-bold">— Fatima, A1 English Student</p>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -top-12 -right-12 w-48 h-48 bg-blue-400 rounded-full opacity-10 blur-3xl"></div>
+              <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-red-400 rounded-full opacity-10 blur-3xl"></div>
+            </div>
           </div>
         </div>
       </section>

@@ -18,12 +18,14 @@ export default function Navbar() {
                 <div className="flex justify-between items-center h-20">
 
                     {/* 1. Logo Section */}
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-red-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-105 transition">
-                            <span className="font-bold text-xl">FT</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="font-bold text-lg leading-none tracking-tight">FAST TRACK</span>
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <img
+                            src="/images/logo-icon.png"
+                            alt="Fast Track Training"
+                            className="h-12 w-auto group-hover:scale-105 transition"
+                        />
+                        <div className="hidden sm:flex flex-col">
+                            <span className="font-bold text-lg leading-none tracking-tight text-white">FAST TRACK</span>
                             <span className="text-[10px] text-slate-400 tracking-widest uppercase">Training</span>
                         </div>
                     </Link>
@@ -31,16 +33,16 @@ export default function Navbar() {
                     {/* 2. Desktop Navigation */}
                     <div className="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide">
                         <Link href="/" className={isActive("/")}>HOME</Link>
+                        <Link href="/student" className={isActive("/student")}>STUDENT AREA</Link>
                         <Link href="/about" className={isActive("/about")}>ABOUT US</Link>
                         <Link href="/#courses" className={isActive("/#courses")}>OUR COURSES</Link>
                         <Link href="/contact" className={isActive("/contact")}>CONTACT</Link>
-                        <Link href="/dashboard" className={isActive("/dashboard")}>DASHBOARD</Link>
                     </div>
 
                     {/* 3. Action Buttons */}
                     <div className="hidden lg:flex items-center gap-4">
                         {/* Check if we are in the dashboard/app to show Logout/User */}
-                        {pathname?.includes('/dashboard') || pathname?.includes('/learn') ? (
+                        {pathname?.includes('/student') || pathname?.includes('/dashboard') || pathname?.includes('/learn') ? (
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center gap-2 text-right">
                                     <span className="text-xs text-slate-400 block">Student</span>
@@ -68,10 +70,10 @@ export default function Navbar() {
             {isOpen && (
                 <div className="lg:hidden bg-slate-900 border-t border-slate-800 p-4 space-y-4">
                     <Link href="/" className="block py-2 text-slate-300 hover:text-white" onClick={() => setIsOpen(false)}>Home</Link>
+                    <Link href="/student" className="block py-2 text-slate-300 hover:text-white" onClick={() => setIsOpen(false)}>Student Area</Link>
                     <Link href="/about" className="block py-2 text-slate-300 hover:text-white" onClick={() => setIsOpen(false)}>About Us</Link>
                     <Link href="/#courses" className="block py-2 text-slate-300 hover:text-white" onClick={() => setIsOpen(false)}>Our Courses</Link>
                     <Link href="/contact" className="block py-2 text-slate-300 hover:text-white" onClick={() => setIsOpen(false)}>Contact</Link>
-                    <Link href="/dashboard" className="block py-2 text-slate-300 hover:text-white" onClick={() => setIsOpen(false)}>Dashboard</Link>
                     <Link href="/login" className="block py-2 text-red-500 font-bold" onClick={() => setIsOpen(false)}>Student Login</Link>
                 </div>
             )}
